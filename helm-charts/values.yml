@@ -1,0 +1,33 @@
+flink:
+  enabled: true
+  custom: 
+    nodePort: 30000
+
+kafka:
+  enabled: true
+  custom:
+    nodePort: 30001
+  
+kafka-ui:
+  enabled: true
+  envs:
+    config:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "play-kafka-headless:9092"
+  custom:
+    nodePort: 30002
+
+minio:
+  enabled: true
+  mode: standalone
+  image:
+    repository: minio/minio
+    tag: RELEASE.2023-04-20T17-56-55Z
+  mcImage:
+    repository: minio/mc
+    tag: RELEASE.2023-04-12T02-21-51Z
+  consoleService:
+    type: NodePort
+    nodePort: 30003
+  rootUser: s3_user
+  rootPassword: s3_password

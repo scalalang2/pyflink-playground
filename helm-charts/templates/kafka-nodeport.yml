@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "play.name" .}}-kafka-nodeport
+  labels:
+    {{- include "play.labels" (dict "component" "kafka-nodeport") | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+  - name: client
+    port: 9092
+    nodePort: {{ .Values.kafka.custom.nodePort }}
+  selector:
+    app.kubernetes.io/component: kafka
+    app.kubernetes.io/instance: {{ .Chart.Name }}
+    app.kubernetes.io/name: kafka
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "play.name" .}}-kafka-ui-nodeport
+  labels:
+    {{- include "play.labels" (dict "component" "kafka-ui-nodeport") | nindent 4 }}
+spec:
+  type: NodePort
+  ports:
+  - name: kafkaui
+    port: 8080
+    nodePort: {{ index .Values "kafka-ui" "custom" "nodePort" }}
+  selector:
+    app.kubernetes.io/instance: {{ .Chart.Name }}
+    app.kubernetes.io/name: kafka-ui

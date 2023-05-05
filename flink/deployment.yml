@@ -29,17 +29,6 @@ spec:
               name: flink-logs
             - mountPath: /opt/flink/downloads
               name: downloads
-        - name: beam-worker-pool
-          image: apache/beam_python3.8_sdk:2.46.0
-          args: ["--worker_pool"]
-          ports:
-          - containerPort: 50000
-            name: pool
-          livenessProbe:
-            tcpSocket:
-              port: 50000
-            initialDelaySeconds: 30
-            periodSeconds: 60
       volumes:
         - name: flink-logs
           emptyDir: { }
