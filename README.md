@@ -59,3 +59,4 @@ play-kafka-ui-6d464f9fd-4mg5w                1/1     Running   0          2m21s
 
 ## References
 - [Flink Kubernetes Operator](https://github.com/apache/flink-kubernetes-operator)
+- [Flink : Python API](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/python/overview/)

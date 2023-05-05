@@ -1,0 +1,18 @@
+# IDE
+.idea
+.vscode
+
+# Compiled Files
+*.class
+*.war
+*.ear
+*.jar
+
+# Logs and Dumps
+*.log
+*.out
+*.dump
+*.swp
+
+# Flink binary
+flink-1.17.0
