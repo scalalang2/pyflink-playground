@@ -1,0 +1,47 @@
+apiVersion: flink.apache.org/v1beta1
+kind: FlinkDeployment
+metadata:
+  name: flink-server
+spec:
+  image: flink:1.17
+  flinkVersion: v1_17
+  flinkConfiguration:
+    taskmanager.numberOfTaskSlots: "2"
+  serviceAccount: flink
+  jobManager:
+    resource:
+      memory: "2048m"
+      cpu: 1
+  taskManager:
+    resource:
+      memory: "2048m"
+      cpu: 1
+  podTemplate:
+    apiVersion: v1
+    kind: Pod
+    metadata:
+      name: pod-template
+    spec:
+      containers:
+        - name: flink-main-container
+          volumeMounts:
+            - mountPath: /opt/flink/log
+              name: flink-logs
+            - mountPath: /opt/flink/downloads
+              name: downloads
+        - name: beam-worker-pool
+          image: apache/beam_python3.8_sdk:2.46.0
+          args: ["--worker_pool"]
+          ports:
+          - containerPort: 50000
+            name: pool
+          livenessProbe:
+            tcpSocket:
+              port: 50000
+            initialDelaySeconds: 30
+            periodSeconds: 60
+      volumes:
+        - name: flink-logs
+          emptyDir: { }
+        - name: downloads
+          emptyDir: { }

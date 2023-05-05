@@ -1,0 +1,2 @@
+# Apache Flink Operator
+In this playground, Flink is operated by [Apache Flink Operator](https://github.com/apache/flink-kubernetes-operator) It maintains the task manager and job manager on behalf of the user.
