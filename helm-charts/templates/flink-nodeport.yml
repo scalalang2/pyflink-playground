@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: flink-nodeport
   labels:
-    {{- include "play.labels" (dict "component" "flink-nodeport") | nindent 4 }}
+    {{- include "play.labels" (dict "ctx" . "component" "flink-nodeport") | nindent 4 }}
 spec:
   type: NodePort
   ports:

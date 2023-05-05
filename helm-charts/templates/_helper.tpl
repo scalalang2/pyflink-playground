@@ -16,10 +16,10 @@
 {{- end -}}
 
 {{- define "play.labels" -}}
-helm.sh/chart: {{ include "play.chart" . }}
-app.kubernetes.io/name: {{ include "play.name" . }}
-app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/managed-by: {{ .Release.Service }}
+helm.sh/chart: {{ include "play.chart" .ctx }}
+app.kubernetes.io/name: {{ include "play.name" .ctx }}
+app.kubernetes.io/instance: {{ .ctx.Release.Name }}
+app.kubernetes.io/managed-by: {{ .ctx.Release.Service }}
 {{- if .component }}
 app.kubernetes.io/component: {{ .component }}
 {{- end }}

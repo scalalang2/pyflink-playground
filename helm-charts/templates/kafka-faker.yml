@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "play.name" . }}-kafka-faker-config
+  labels:
+    {{- include "play.labels" (dict "ctx" . "component" "kafka-faker-cfg") | nindent 4 }}
+data:
+  config.yml: |-
+    {{ index .Values "kafka-faker" "config" | nindent 4 }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "play.name" . }}-kafka-faker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "play.labels" (dict "ctx" . "component" "kafka-faker") | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "play.labels" (dict "ctx" . "component" "kafka-faker") | nindent 8 }}
+    spec:
+      containers:
+      - name: kafkafaker
+        image: scalalang2/kafka-faker:0.1.0
+        command: ["/src/kafka-faker"]
+        args: ["--config-file", "/etc/kafka-faker/config.yml"]
+        volumeMounts:
+        - name: kafka-faker-config-volume
+          mountPath: /etc/kafka-faker/
+        securityContext:
+          runAsUser: 9999
+      volumes:
+      - name: kafka-faker-config-volume
+        configMap:
+          name: {{ template "play.name" . }}-kafka-faker-config
+          items:
+          - key: config.yml
+            path: config.yml

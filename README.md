@@ -33,5 +33,29 @@ helm install -f flink/values.yml \
     flink-operator-repo/flink-kubernetes-operator
 ```
 
+## Install pre-requisites components
+The example code uses Kafka as messages and MinIO as storage. You can simply install these components by Helm chart.
+
+```shell
+$ helm install play ./helm-charts
+```
+
+```
+💡 Until now, you need to name it as `play`.
+```
+
+Kubectl show you that these components is successfully installed.
+
+```shell
+$ kubectl get pods
+NAME                                         READY   STATUS    RESTARTS   AGE
+flink-kubernetes-operator-545c768689-m8kpv   1/1     Running   0          11m
+play-minio-78fd77d9cd-zw7qh                  0/1     Pending   0          2m21s
+play-minio-post-job-crwz7                    1/1     Running   0          2m21s
+play-kafka-faker-68bc96b949-9xrth            1/1     Running   0          2m21s
+play-kafka-0                                 1/1     Running   0          2m21s
+play-kafka-ui-6d464f9fd-4mg5w                1/1     Running   0          2m21s
+```
+
 ## References
 - [Flink Kubernetes Operator](https://github.com/apache/flink-kubernetes-operator)

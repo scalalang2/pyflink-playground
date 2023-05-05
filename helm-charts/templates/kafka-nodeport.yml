@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: {{ template "play.name" .}}-kafka-nodeport
   labels:
-    {{- include "play.labels" (dict "component" "kafka-nodeport") | nindent 4 }}
+    {{- include "play.labels" (dict "ctx" . "component" "kafka-nodeport") | nindent 4 }}
 spec:
   type: NodePort
   ports:
@@ -20,7 +20,7 @@ kind: Service
 metadata:
   name: {{ template "play.name" .}}-kafka-ui-nodeport
   labels:
-    {{- include "play.labels" (dict "component" "kafka-ui-nodeport") | nindent 4 }}
+    {{- include "play.labels" (dict "ctx" . "component" "kafka-ui-nodeport") | nindent 4 }}
 spec:
   type: NodePort
   ports:
