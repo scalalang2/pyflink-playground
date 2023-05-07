@@ -1,3 +1,9 @@
+- [Overview](#overview)
+- [Create local Kubernetes cluster](#create-local-kubernetes-cluster)
+- [Create Flink cluster.](#create-flink-cluster)
+- [Install pre-requisites components](#install-pre-requisites-components)
+- [References](#references)
+
 # PyFlink Playground
 A playground for PyFlink written with Helm chart.
 
@@ -55,6 +61,20 @@ play-minio-post-job-crwz7                    1/1     Running   0          2m21s
 play-kafka-faker-68bc96b949-9xrth            1/1     Running   0          2m21s
 play-kafka-0                                 1/1     Running   0          2m21s
 play-kafka-ui-6d464f9fd-4mg5w                1/1     Running   0          2m21s
+```
+
+## Install Flink, Java and Python
+This is the most hard part here. you need to install flink binary manually and make sure that the version of thoese is same as below.
+
+- Python 3.9
+- Java 11
+- Flink 1.17.0
+
+If you want to change the version of Flink, you can manually modify it from helm chart in this project. [This shows how to install Flink](https://nightlies.apache.org/flink/flink-docs-stable/docs/try-flink/local_installation/)
+
+```shell
+$ flink --version
+Version: 1.17.0, Commit ID: 69ecda0
 ```
 
 ## References
