@@ -77,6 +77,15 @@ $ flink --version
 Version: 1.17.0, Commit ID: 69ecda0
 ```
 
+## Deploh FLink Job
+All Done!, If you follow the description to this line. You're now ready to deploy your first flink job.
+
+```shell
+flink run -py ../jobs/basic/job.py -m localhost:30000
+```
+
+Let's check what it does in Flink dashboard. Please visit [localhost:30000](localhost:30000)
+
 ## References
 - [Flink Kubernetes Operator](https://github.com/apache/flink-kubernetes-operator)
 - [Flink : Python API](https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/python/overview/)
