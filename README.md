@@ -74,7 +74,7 @@ $ flink --version
 Version: 1.17.0, Commit ID: 69ecda0
 ```
 
-## Deploh FLink Job
+## Deploy FLink Job
 Congratulations! You've reached the final step. Now you're ready to deploy your first Flink job.
 
 ```shell
