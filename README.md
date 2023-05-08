@@ -5,15 +5,15 @@
 - [References](#references)
 
 # PyFlink Playground
-A playground for PyFlink written with Helm chart.
+Explore PyFlink with ease using this Helm chart-based playground.
 
 ## Overview
-This project is not only for deploying simple example but also complex stream processing integrated with various storage services such as Kafka, S3 and etc.
+This project is designed not only for deploying simple examples but also for handling complex stream processing scenarios integrated with various storage services like Kafka, S3, and more.
 
-Kuberentes with helm chart helps us to deploy complex infrastructure within local machine with ease. Let's put elephants to the refrigerator 🚀
+With Kubernetes and Helm chart, you can effortlessly deploy complex infrastructures on your local machine. Let's put elephants to the refrigerator 🚀
 
 ## Create local Kubernetes cluster
-First of all, let's create a kubernetes cluster in local. To configure local cluster we're going to use [K3D](https://k3d.io/v5.4.9/#installation). Before you run belo command, make sure that you downloaded it first.
+First, let's create a Kubernetes cluster on your local machine. We'll use [K3D](https://k3d.io/v5.4.9/#installation) to set up the local cluster. Make sure you have downloaded it before running the command below.
 
 ```shell
 $ k3d cluster create local-cluster \
@@ -22,7 +22,7 @@ $ k3d cluster create local-cluster \
     --agents 2
 ```
 
-- `-p 30000-30010:30000-30010` : This bound the local port to the cluster, It helps us to visit the Flink dashboard in local.
+- `-p 30000-30010:30000-30010` : This binds the local port to the cluster, allowing you to access the Flink dashboard locally.
 
 ```
 💡 Do not allocate large port ranges `-p 30000-30010:30000-30010`, 
@@ -40,17 +40,14 @@ helm install -f flink/values.yml \
 ```
 
 ## Install pre-requisites components
-The example code uses Kafka as messages and MinIO as storage. You can simply install these components by Helm chart.
+The example code uses external storages for both `source` and `sink`. You can easily install these components using the Helm chart.
 
 ```shell
 $ helm install play ./helm-charts
+💡 Make sure to name it as `play`.
 ```
 
-```
-💡 Until now, you need to name it as `play`.
-```
-
-Kubectl show you that these components is successfully installed.
+Verify that these components are successfully installed using kubectl.
 
 ```shell
 $ kubectl get pods
@@ -64,13 +61,13 @@ play-kafka-ui-6d464f9fd-4mg5w                1/1     Running   0          2m21s
 ```
 
 ## Install Flink, Java and Python
-This is the most hard part here. you need to install flink binary manually and make sure that the version of thoese is same as below.
+This is the trickiest part. You need to manually install the Flink binary and ensure that the versions of the following components match:
 
 - Python 3.9
 - Java 11
 - Flink 1.17.0
 
-If you want to change the version of Flink, you can manually modify it from helm chart in this project. [This shows how to install Flink](https://nightlies.apache.org/flink/flink-docs-stable/docs/try-flink/local_installation/)
+If you wish to change the version of Flink, you can manually modify it from Helm chart of this project. [Here is a guide for installing Flink](https://nightlies.apache.org/flink/flink-docs-stable/docs/try-flink/local_installation/)
 
 ```shell
 $ flink --version
@@ -78,13 +75,13 @@ Version: 1.17.0, Commit ID: 69ecda0
 ```
 
 ## Deploh FLink Job
-All Done!, If you follow the description to this line. You're now ready to deploy your first flink job.
+Congratulations! You've reached the final step. Now you're ready to deploy your first Flink job.
 
 ```shell
 flink run -py ../jobs/helloworld/main.py -m localhost:30000
 ```
 
-Let's check what it does in Flink dashboard. Please visit [localhost:30000](localhost:30000)
+To see what the job is doing. Visit to Flink Dashboard[localhost:30000](localhost:30000)
 
 ## References
 - [Flink Kubernetes Operator](https://github.com/apache/flink-kubernetes-operator)
