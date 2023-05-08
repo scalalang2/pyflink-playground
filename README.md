@@ -81,7 +81,7 @@ Version: 1.17.0, Commit ID: 69ecda0
 All Done!, If you follow the description to this line. You're now ready to deploy your first flink job.
 
 ```shell
-flink run -py ../jobs/basic/job.py -m localhost:30000
+flink run -py ../jobs/helloworld/main.py -m localhost:30000
 ```
 
 Let's check what it does in Flink dashboard. Please visit [localhost:30000](localhost:30000)
