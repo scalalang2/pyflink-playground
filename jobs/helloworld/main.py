@@ -26,7 +26,6 @@ def python_demo():
     t_env.execute_sql("""
         INSERT INTO print_table SELECT * FROM orders""")
 
-
 if __name__ == '__main__':
     logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(message)s")
     python_demo()
