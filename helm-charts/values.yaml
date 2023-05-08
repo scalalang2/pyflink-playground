@@ -36,7 +36,7 @@ kafka-faker:
         delay: 30s
 
 minio:
-  enabled: true
+  enabled: false
   mode: standalone
   image:
     repository: minio/minio
