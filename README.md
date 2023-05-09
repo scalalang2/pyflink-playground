@@ -61,13 +61,13 @@ play-kafka-ui-6d464f9fd-4mg5w                1/1     Running   0          2m21s
 ```
 
 ## Install Flink, Java and Python
-This is the trickiest part. You need to manually install the Flink binary and ensure that the versions of the following components match:
+This is the trickiest part. You need to manually install the Flink binary and ensure that the versions of the following components match: [Here is a guide for installing Flink](https://nightlies.apache.org/flink/flink-docs-stable/docs/try-flink/local_installation/)
 
 - Python 3.9
 - Java 11
 - Flink 1.17.0
 
-If you wish to change the version of Flink, you can manually modify it from Helm chart of this project. [Here is a guide for installing Flink](https://nightlies.apache.org/flink/flink-docs-stable/docs/try-flink/local_installation/)
+If you wish to change the version of Flink, you can manually modify it from Helm chart of this project. 
 
 ```shell
 $ flink --version
