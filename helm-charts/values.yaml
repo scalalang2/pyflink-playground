@@ -17,24 +17,6 @@ kafka-ui:
   custom:
     nodePort: 30002
 
-kafka-faker:
-  config: |-
-    kafka:
-      brokers: play-kafka-headless:9092
-    generators:
-      - topic: bank_transfer
-        partitionKey: any
-        template: |-
-          {
-            "from": "{{ personName }}",
-            "to": "{{ personName }}",
-            "amount": {{ intBetween 1 1000 }},
-            "timestamp": "{{ timestamp }}"
-          }
-        number: 5
-        loop: true
-        delay: 30s
-
 minio:
   enabled: false
   mode: standalone
