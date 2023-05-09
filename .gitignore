@@ -9,7 +9,6 @@
 *.class
 *.war
 *.ear
-*.jar
 
 # Logs and Dumps
 *.log
