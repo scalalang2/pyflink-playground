@@ -32,11 +32,15 @@ it makes your computer super slow.
 
 ## Create Flink cluster.
 ```shell
+# Insall Flink Kubernetes Operator
 helm repo add flink-operator-repo \
     https://downloads.apache.org/flink/flink-kubernetes-operator-1.4.0/
 helm install -f flink/values.yml \
     flink-kubernetes-operator \
     flink-operator-repo/flink-kubernetes-operator
+
+# Deploy Flink Server
+kubectl apply -f flink/deployment.yml
 ```
 
 ## Install pre-requisites components
