@@ -22,22 +22,32 @@ t_env.get_config().set('pipeline.classpaths', known_args.dep)
 # define source table with datagen
 t_env.execute_sql("""
     CREATE TABLE bank_transfers(
-        transaction_id BIGINT,
-        from_account_id BIGINT,
-        to_account_id BIGINT,
-        amount DECIMAL(32, 2)
+        transaction_id INT,
+        from_account_id INT,
+        to_account_id INT,
+        amount INT,
+        created_at TIMESTAMP_LTZ
     ) WITH (
-        'connector' = 'datagen'
+        'connector' = 'datagen',
+        'rows-per-second' = '10',
+        'fields.amount.min' = '1',
+        'fields.amount.max' = '1000',
+        'fields.from_account_id.min' = '1',
+        'fields.from_account_id.max' = '100000',
+        'fields.to_account_id.min' = '1',
+        'fields.to_account_id.max' = '100000',
+        'fields.created_at.max-past' = '1000'
     )
 """)
 
 # define sink table with kafka connector
 t_env.execute_sql("""
     CREATE TABLE bank_transfers_sink(
-        transaction_id BIGINT,
-        from_account_id BIGINT,
-        to_account_id BIGINT,
-        amount DECIMAL(32, 2)
+        transaction_id INT,
+        from_account_id INT,
+        to_account_id INT,
+        amount INT,
+        created_at TIMESTAMP_LTZ
     ) WITH (
         'connector' = 'kafka',
         'topic' = 'bank_transfers',

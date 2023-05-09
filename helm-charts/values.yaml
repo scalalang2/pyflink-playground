@@ -18,7 +18,7 @@ kafka-ui:
     nodePort: 30002
 
 minio:
-  enabled: false
+  enabled: true
   mode: standalone
   image:
     repository: minio/minio
