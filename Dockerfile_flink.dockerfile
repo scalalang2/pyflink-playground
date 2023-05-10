@@ -1,0 +1,5 @@
+FROM flink:1.15
+ENV FLINK_PLUGINS_DIR=/opt/flink/plugins
+ENV S3_PLUGINS_DIR=custom-s3
+RUN mkdir $FLINK_PLUGINS_DIR/$S3_PLUGINS_DIR
+COPY libs/flink-s3-fs-hadoop-1.15.4.jar $FLINK_PLUGINS_DIR/$S3_PLUGINS_DIR/

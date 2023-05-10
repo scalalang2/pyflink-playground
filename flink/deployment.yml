@@ -3,7 +3,7 @@ kind: FlinkDeployment
 metadata:
   name: flink-server
 spec:
-  image: flink:1.15
+  image: scalalang2/flink:1.15-hadoop-fs
   flinkVersion: v1_15
   flinkConfiguration:
     taskmanager.numberOfTaskSlots: "2"
