@@ -156,7 +156,7 @@ defaultConfiguration:
 
     s3.access-key: test
     s3.secret-key: test1234
-    s3.endpoint: play-minio:9000
+    s3.endpoint: http://play-minio:9000
     s3.path.style.access: true
   log4j-operator.properties: |+
     # Flink Operator Logging Overrides
