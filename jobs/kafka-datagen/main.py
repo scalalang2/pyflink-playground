@@ -26,7 +26,7 @@ t_env.execute_sql("""
         from_account_id INT,
         to_account_id INT,
         amount INT,
-        created_at TIMESTAMP_LTZ
+        created_at TIMESTAMP(3)
     ) WITH (
         'connector' = 'datagen',
         'rows-per-second' = '10',
@@ -47,10 +47,10 @@ t_env.execute_sql("""
         from_account_id INT,
         to_account_id INT,
         amount INT,
-        created_at TIMESTAMP_LTZ
+        created_at TIMESTAMP(0)
     ) WITH (
         'connector' = 'kafka',
-        'topic' = 'bank_transfers',
+        'topic' = 'test_topic',
         'properties.bootstrap.servers' = 'play-kafka-headless:9092',
         'format' = 'json'
     )
