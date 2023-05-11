@@ -1,6 +1,7 @@
 """
 Streaming Kafka To S3 sink 
 """
+import logging
 import os
 import sys
 import argparse
@@ -56,7 +57,7 @@ def create_sink_table(table_name, bucket_name):
         dt STRING,
         `hour` STRING,
         `minute` STRING
-    ) PARTITIONED BY (dt, `hour`, `minute`)
+    ) PARTITIONED BY (dt, `hour`)
     WITH (
         'connector' = 'filesystem',
         'path' = 's3://{1}/',
@@ -90,8 +91,7 @@ def main():
             amount,
             created_at,
             DATE_FORMAT(created_at, 'yyyy-MM-dd'),
-            DATE_FORMAT(created_at, 'HH'),
-            DATE_FORMAT(created_at, 'mm')
+            DATE_FORMAT(created_at, 'HH')
         FROM {1}
     """.format(output_table_name, input_table_name))
 
