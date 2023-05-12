@@ -36,7 +36,7 @@ def create_source_table(table_name, topic, broker):
         from_account_id INT,
         to_account_id INT,
         amount INT,
-        created_at TIMESTAMP(0),
+        created_at TIMESTAMP(3),
         WATERMARK FOR created_at AS created_at - INTERVAL '5' SECOND
     ) WITH (
         'connector' = 'kafka',
@@ -44,7 +44,8 @@ def create_source_table(table_name, topic, broker):
         'properties.group.id' = 'test_group_id',
         'properties.bootstrap.servers' = '{2}',
         'scan.startup.mode' = 'earliest-offset',
-        'format' = 'json'
+        'format' = 'json',
+        'json.timestamp-format.standard' = 'ISO-8601'
     )""".format(table_name, topic, broker)
 
 def create_sink_table(table_name, bucket_name):
@@ -53,10 +54,9 @@ def create_sink_table(table_name, bucket_name):
         from_account_id INT,
         to_account_id INT,
         amount INT,
-        created_at TIMESTAMP(0),
+        created_at TIMESTAMP(3),
         dt STRING,
-        `hour` STRING,
-        `minute` STRING
+        `hour` STRING
     ) PARTITIONED BY (dt, `hour`)
     WITH (
         'connector' = 'filesystem',
@@ -72,7 +72,7 @@ def main():
     output_table_name = "s3_output"
     bucket_name = "analyticlogs"
     kafka_brokers = "play-kafka-headless:9092"
-    kafka_topic = "test_topic"
+    kafka_topic = "sample4"
 
     source = create_source_table(input_table_name, kafka_topic, kafka_brokers)
     sink = create_sink_table(output_table_name, bucket_name)

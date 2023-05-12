@@ -4,6 +4,6 @@ This example gather kafka messages hourly and store those to the persistent stor
 ```shell
 $ flink run -py ./jobs/kafka-to-s3/main.py \
     -m localhost:30000 \
-    --dep "file://$(pwd)/libs/flink-sql-connector-kafka-1.15.4.jar;file://$(pwd)/libs/flink-json-1.15.4.jar;file://$(pwd)/libs/flink-s3-fs-hadoop-1.15.4.jar" \
+    --dep "file://$(pwd)/libs/flink-sql-connector-kafka-1.15.4.jar" \
     --detach
 ```
